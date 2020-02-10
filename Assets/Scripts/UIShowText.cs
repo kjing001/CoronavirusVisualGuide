@@ -7,21 +7,28 @@ public class UIShowText : MonoBehaviour
 {
     Text text;
     public string content;
+
+    private void Awake()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
     }
 
 
     private void OnEnable()
     {
-        text.text = content;
+        text = GetComponent<Text>();
+
+        //text.text = content;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+            
     }
 }
