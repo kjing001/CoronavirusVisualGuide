@@ -9,9 +9,13 @@ public class Animal : MonoBehaviour
     public const float maxWaitTime = 2f;
     public const float distanceThreshold = 0.01f;
 
+    public int virusNumber = 0;
+
     Vector2 destination;
 
     SpriteRenderer[] spriteRenderers;
+
+    public Sprite[] virusNumbers;
 
     Manager manager;
 
@@ -38,6 +42,7 @@ public class Animal : MonoBehaviour
     private void Reset()
     {
         speed = defaultSpeed;
+        virusNumber = 0;
     }
 
     void PickPosition()
