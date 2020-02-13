@@ -42,7 +42,6 @@ public class Animal : MonoBehaviour
     private void Reset()
     {
         speed = defaultSpeed;
-        virusNumber = 0;
     }
 
     void PickPosition()
