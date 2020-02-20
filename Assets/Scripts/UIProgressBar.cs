@@ -21,7 +21,7 @@ public class UIProgressBar : MonoBehaviour
         height = background.sizeDelta.y;
 
         background.gameObject.SetActive(false);
-        StartCoroutine(ShowProgress(k_defaultDuration, k_defaultText));
+        // StartCoroutine(ShowProgress(k_defaultDuration, k_defaultText));
 
     }
 

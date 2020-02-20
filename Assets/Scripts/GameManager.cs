@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int actionPoints;
-    public float apTimeInterval = 2f;
-    public int totalVirusCount = 1;
+    public float apCD = 2f;
+    public float dayCD = 10f; // to do
+    public int virusCountTotal;
 
     public List<AnimalCell> animalCells;
     int selectedCellID = -1;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     // UIs
     public Text actionPointsText;
     public Text promptText;
+    public Text virusCountTotalText;
     public Button replicateButton;
     public Button mutateButton;
     public Button InfectButton;
@@ -44,11 +46,24 @@ public class GameManager : MonoBehaviour
         mutateButton.onClick.AddListener(OnMutate);
         InfectButton.onClick.AddListener(OnInfect);
 
+        virusCountTotal = 0;
+        foreach (var item in animalCells)        
+            virusCountTotal += item.virusCount;
+        virusCountTotalText.text = virusCountTotal.ToString();
+
         StartCoroutine(GenerateActionPoints());
+
+        // first infect
     }
 
     private void OnInfect()
     {
+        if (selectedCellID == -1)
+        {
+            promptText.text = "You need to choose a target!";
+            return;
+        }
+
     }
 
     private void OnMutate()
@@ -93,6 +108,11 @@ public class GameManager : MonoBehaviour
                     promptText.text = "Can't repulicate more on this host.";
                     return;
                 }
+                else if (item.virusCount == 0)
+                {
+                    promptText.text = "Invalid";
+                    return;
+                }
                 else
                 {
                     actionPoints--;
@@ -113,7 +133,11 @@ public class GameManager : MonoBehaviour
         // update profile and sprites
         animalCell.virusCount++;
         profile.virusCountText.text = "Virus Count: " + animalCell.virusCount.ToString() + "/" + animalCell.maxVirusCount.ToString();
-        animalCell.UpdateVirusSprite();
+        animalCell.UpdateVirusSprites();
+
+        // update total virus count
+        virusCountTotal++;
+        virusCountTotalText.text = virusCountTotal.ToString();
     }
 
 
@@ -137,7 +161,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
     // Update is called once per frame
     void Update()
     {
@@ -150,7 +173,7 @@ public class GameManager : MonoBehaviour
         {
             actionPoints++;
             actionPointsText.text = actionPoints.ToString();
-            yield return new WaitForSeconds(apTimeInterval);
+            yield return new WaitForSeconds(apCD);
         }        
     }
 
