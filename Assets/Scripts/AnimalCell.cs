@@ -8,7 +8,11 @@ public class AnimalCell : MonoBehaviour, IPointerClickHandler
     GameManager gameManager;
     public string animalName;
     public int id;
-    public int virusNum;
+    public int virusCount;
+    public int maxVirusCount;
+    public List<string> infectionTargets = new List<string>();
+    public GameObject number;
+    public GameObject virusIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +30,24 @@ public class AnimalCell : MonoBehaviour, IPointerClickHandler
         //tells game manager which cell is clicked
         gameManager.OnAnimalCellClicked(id);
         Debug.Log("hit" + ", animal name: " + animalName);        
+    }
+
+    public void UpdateVirusSprite()
+    {
+        if (number == null || virusIcon == null)
+            foreach (Transform item in transform)
+            {
+                if (item.name == "Number")            
+                   number = item.gameObject;
+                if (item.name == "Icon")
+                    virusIcon = item.gameObject;
+            }
+        if (number != null)
+            number.GetComponent<SpriteRenderer>().sprite = virusCount > 0 ?
+                    gameManager.numberIcons[virusCount - 1] : null;    
+        
+        if(virusIcon != null)
+            virusIcon.SetActive(virusCount > 0);
     }
 
     public void ShowAnimal(string n)
