@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIProfile : MonoBehaviour
+public class UIHome : MonoBehaviour
 {
-    public Text nameText;
-    public Text virusCountText;
-    public List<string> infectionTargets;
+    public Button newsButton;
+    public Button eatButton;
+    public Button walletButton;
+    public Button goOutButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        infectionTargets = new List<string>();
+        
     }
 
     // Update is called once per frame
