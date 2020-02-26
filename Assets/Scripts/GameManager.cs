@@ -25,15 +25,7 @@ public class GameManager : MonoBehaviour
             m_Food = value;
             OnFoodChange.Invoke();
         }
-    }
-
-    // food info
-    public struct Food
-    {
-        public string name;
-        public float hungryValueIncrease;
-        public float cost;
-    }
+    }    
 
     public List<Food> foods = new List<Food>();
 
