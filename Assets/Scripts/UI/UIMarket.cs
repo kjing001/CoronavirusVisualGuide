@@ -24,6 +24,8 @@ public class UIMarket : MonoBehaviour
     // mapping from buttonID to foodID
     int[] foodIDs;
 
+    List<Food> foodsForSale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,11 +35,7 @@ public class UIMarket : MonoBehaviour
         nahButton.onClick.AddListener(OnNahClicked);
 
         infoPanel.SetActive(false);
-    }
-
-    void UpdateFoodSale()
-    {
-        foodIDs = new int[] { 0, 1, 2, 3, 4, 5 };
+        foodsForSale = FoodManager.instance.foodsForSale;
     }
 
     private void OnNahClicked()
@@ -51,13 +49,22 @@ public class UIMarket : MonoBehaviour
         
     }
 
-    public void ShowInfo(int buttonID)
+    public void ShowInfo(int id)
     {
         infoPanel.SetActive(true);
 
-        // to-do load food info by food id
+        // assuming buttonID is the order that food is put in the foodForSale list
 
+        foodNameText.text = foodsForSale[id].name;
+        foodInfoText.text = "";
+        if (foodsForSale[id].hp != 0)
+            foodInfoText.text += "+ " + foodsForSale[id].hp + "MP\n";
+        if (foodsForSale[id].mp != 0)
+            foodInfoText.text += "+ " + foodsForSale[id].mp + "MP\n";
 
+        foodInfoText.text += "Price: " + foodsForSale[id].price + "$\n\n";
+
+        foodInfoText.text += foodsForSale[id].info;
     }
 
     // Update is called once per frame

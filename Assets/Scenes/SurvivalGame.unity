@@ -4296,9 +4296,9 @@ MonoBehaviour:
   foodButtons: []
   selectedID: 0
   infoPanel: {fileID: 2125202481}
-  foodImage: {fileID: 0}
-  foodNameText: {fileID: 0}
-  foodInfoText: {fileID: 0}
+  foodImage: {fileID: 822709117}
+  foodNameText: {fileID: 317608315}
+  foodInfoText: {fileID: 2002267266}
   buyButton: {fileID: 538904854}
   nahButton: {fileID: 1860813842}
 --- !u!1 &1625766345
@@ -5384,8 +5384,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2058210029}
   - component: {fileID: 2058210028}
+  - component: {fileID: 2058210030}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5424,6 +5425,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2058210030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058210027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfeae07bfaa33074ab225539501f2a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059576351
 GameObject:
   m_ObjectHideFlags: 0

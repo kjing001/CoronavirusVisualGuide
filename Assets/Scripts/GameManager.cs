@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         }
     }    
 
-    public List<Food> foods = new List<Food>();
+    public List<Food> myFoods = new List<Food>();
 
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // create initial foods
+        
     }
 
     // Update is called once per frame
@@ -53,5 +54,8 @@ public class GameManager : MonoBehaviour
             food++;
         }
     }
+
+
+
 
 }
