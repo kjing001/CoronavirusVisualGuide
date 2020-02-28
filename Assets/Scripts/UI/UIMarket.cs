@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIMarket : MonoBehaviour
 {
     [Tooltip("Food Buttons, will automatcially find children of type UIFoodButton")]
-    public Button[] foodButtons;
+    public UIFoodItem[] foodItems;
 
     [HideInInspector]
     public int selectedID = -1;
@@ -17,30 +17,37 @@ public class UIMarket : MonoBehaviour
     public Image foodImage;
     public Text foodNameText;
     public Text foodInfoText;
-
+    public Transform foodForSaleLayout;
     public Button buyButton;
     public Button nahButton;
 
     // mapping from buttonID to foodID
     int[] foodIDs;
 
-    List<Food> foodsForSale;
+    List<Food> foods;
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        foodButtons = GetComponentsInChildren<Button>();
-        for (int i = 0; i < foodButtons.Length; i++)
-        {
-            int temp = i;
-            foodButtons[i].onClick.AddListener(() => OnFoodClicked(temp));
-        }
+        gameManager = GameManager.instance;
 
         buyButton.onClick.AddListener(OnBuyClicked);
         nahButton.onClick.AddListener(OnNahClicked);
 
         infoPanel.SetActive(false);
-        foodsForSale = FoodManager.instance.foodsForSale;
+    }
+
+    private void OnEnable()
+    {
+        foodItems = foodForSaleLayout.GetComponentsInChildren<UIFoodItem>();
+        Debug.Log(foodItems.Length);
+        foreach (var item in foodItems)
+        {
+            item.button.onClick.AddListener(() => OnFoodClicked(item.id));
+            item.ShowFoodItemInfo();
+        }
     }
 
     void OnFoodClicked(int id)
@@ -57,7 +64,7 @@ public class UIMarket : MonoBehaviour
 
     private void OnBuyClicked()
     {
-        
+        //gameManager.AddFood()
     }
 
     public void ShowInfo(int id)
@@ -65,17 +72,17 @@ public class UIMarket : MonoBehaviour
         infoPanel.SetActive(true);
 
         // assuming buttonID is the order that food is put in the foodForSale list
-
-        foodNameText.text = foodsForSale[id].name;
+        foods = gameManager.marketFoods;
+        foodNameText.text = foods[id].name;
         foodInfoText.text = "";
-        if (foodsForSale[id].hp != 0)
-            foodInfoText.text += "+ " + foodsForSale[id].hp + "MP\n";
-        if (foodsForSale[id].mp != 0)
-            foodInfoText.text += "+ " + foodsForSale[id].mp + "MP\n";
+        if (foods[id].hp != 0)
+            foodInfoText.text += "+ " + foods[id].hp + "MP\n";
+        if (foods[id].mp != 0)
+            foodInfoText.text += "+ " + foods[id].mp + "MP\n";
 
-        foodInfoText.text += "Price: " + foodsForSale[id].price + "$\n\n";
+        foodInfoText.text += "Price: " + foods[id].price + "$\n\n";
 
-        foodInfoText.text += foodsForSale[id].info;
+        foodInfoText.text += foods[id].info;
     }
 
     // Update is called once per frame

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
@@ -12,16 +13,24 @@ public class GameManager : MonoBehaviour
     public float mentalHealth;
 
     public UnityEvent OnFoodChange;
+    public GameObject foodItemPrefab;
+    public Transform homeFoodLayout;
+    public Transform marketFoodLayout;
 
     [Range (1, 20)]
     public float maxFoodCount = 20;
 
     public List<Food> myFoods = new List<Food>();
+    public List<Food> marketFoods = new List<Food>();
 
-    public void AddFood(Food food)
+    public void AddFoodToMyFoods(Food food)
     {
         myFoods.Add(food);
-        OnFoodChange.Invoke();
+
+        // add an item to the food panel at home
+        UIFoodItem foodItem = Instantiate(foodItemPrefab, homeFoodLayout).GetComponent<UIFoodItem>();
+        foodItem.food = food;
+        foodItem.ShowFoodItemInfo();
     }
 
     private void Awake()
@@ -32,8 +41,22 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // create initial foods
-        
+        // initial food information
+        marketFoods.Add(FoodDB.chicken);
+        marketFoods.Add(FoodDB.fruit);
+        marketFoods.Add(FoodDB.vegetables);
+        marketFoods.Add(FoodDB.beef);
+        marketFoods.Add(FoodDB.egg);
+        marketFoods.Add(FoodDB.water);
+
+        // create ui food items on the market
+        for (int i = 0; i < marketFoods.Count; i++)
+        {
+            UIFoodItem foodItem = Instantiate(foodItemPrefab, marketFoodLayout).GetComponent<UIFoodItem>();
+            foodItem.food = marketFoods[i];
+            //foodItem.ShowFoodItemInfo();
+        }
+
     }
 
     // Update is called once per frame
@@ -44,9 +67,9 @@ public class GameManager : MonoBehaviour
 
     void TestInputs()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.B))
         {
-            AddFood(FoodManager.instance.beef);
+            AddFoodToMyFoods(FoodDB.beef);
         }
     }
 

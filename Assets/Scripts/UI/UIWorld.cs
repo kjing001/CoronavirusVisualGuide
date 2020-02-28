@@ -12,7 +12,7 @@ public class UIWorld : MonoBehaviour
     public GameObject background;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         marketButton.onClick.AddListener(()=>ShowMarket(true));
         marketExitButton.onClick.AddListener(() => ShowMarket(false));

@@ -12,12 +12,9 @@ public struct Food
     public string info;
 }
 
-public class FoodManager : MonoBehaviour
+public class FoodDB : MonoBehaviour
 {
-    public static FoodManager instance;
-    public List<Food> foodsForSale = new List<Food>();
-
-    public Food chicken = new Food()
+    public static Food chicken = new Food()
     {
         foodID = 0,
         name = "Chicken",
@@ -27,7 +24,7 @@ public class FoodManager : MonoBehaviour
         info = "Good source of protein."
     };
 
-    public Food fruit = new Food()
+    public static Food fruit = new Food()
     {
         foodID = 1,
         name = "Fruit",
@@ -37,7 +34,7 @@ public class FoodManager : MonoBehaviour
         info = "Provide necessary vitamins."
     };
     
-    public Food vegetables = new Food()
+    public static Food vegetables = new Food()
     {
         foodID = 2,
         name = "Vegetables",
@@ -47,7 +44,7 @@ public class FoodManager : MonoBehaviour
         info = "Fresh from local market."
     };
 
-    public Food beef = new Food()
+    public static Food beef = new Food()
     {
         foodID = 3,
         name = "Prime Beef",
@@ -57,7 +54,7 @@ public class FoodManager : MonoBehaviour
         info = "Prime wagyu beef, very delicious."
     };
 
-    public Food egg = new Food()
+    public static Food egg = new Food()
     {
         foodID = 4,
         name = "Egg",
@@ -67,7 +64,7 @@ public class FoodManager : MonoBehaviour
         info = ""
     };
 
-    public Food water = new Food()
+    public static Food water = new Food()
     {
         foodID = 5,
         name = "Water",
@@ -78,25 +75,4 @@ public class FoodManager : MonoBehaviour
     };
 
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        foodsForSale.Add(chicken);
-        foodsForSale.Add(fruit);
-        foodsForSale.Add(vegetables);
-        foodsForSale.Add(beef);
-        foodsForSale.Add(egg);
-        foodsForSale.Add(water);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

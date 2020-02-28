@@ -6,24 +6,37 @@ using UnityEngine.UI;
 
 public class UIButton : MonoBehaviour
 {
-    [HideInInspector]
-    public int id;
-
-    public Button button;
-    public Image image;
-    public Text text;
-    
-    void Awake()
+    public int id
     {
-        button = GetComponent<Button>();
+        get { return transform.GetSiblingIndex(); }
+    }
 
-        image = GetComponent<Image>();
-        if (image == null)
-            image = GetComponentInChildren<Image>();
+    public Button button
+    {
+        get { return GetComponent<Button>(); }
+    }
 
-        text = GetComponentInChildren<Text>();
+    public Image image
+    {
+        get
+        {
+            var img = GetComponent<Image>();
+            if (img == null)
+                img = GetComponentInChildren<Image>();
+            return img;
+        }        
+    }
 
-        id = transform.GetSiblingIndex();
+    public Text text
+    {
+        get
+        {
+            var txt = GetComponent<Text>();
+            if (txt == null)
+                txt = GetComponentInChildren<Text>();
+            return txt;
+        }
+
     }
 
 }

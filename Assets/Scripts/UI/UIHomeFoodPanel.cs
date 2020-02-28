@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIFoodPanel : MonoBehaviour
+public class UIHomeFoodPanel : MonoBehaviour
 {
     public Text foodCountText;
     public Text foodInfoText;
@@ -15,8 +15,6 @@ public class UIFoodPanel : MonoBehaviour
     GameManager manager;
 
     public Button[] foodButtons;
-
-    public Transform foodLayout;
 
     int selectedID;
 
