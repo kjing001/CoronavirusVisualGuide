@@ -14,22 +14,35 @@ public class UIFoodPanel : MonoBehaviour
     public Button eatButton;
     GameManager manager;
 
+    public Button[] foodButtons;
+
+    public Transform foodLayout;
+
+    int selectedID;
+
     // Start is called before the first frame update
     void Start()
     {
         manager = GameManager.instance;
         eatButton.onClick.AddListener(OnEat);
+
+        foodButtons = GetComponentsInChildren<Button>();
+        for (int i = 0; i < foodButtons.Length; i++)
+        {
+            int t = i;
+            foodButtons[i].onClick.AddListener(() => OnFoodClicked(t));
+        }
+
+    }
+
+    void OnFoodClicked(int id)
+    {
+        selectedID = id;
     }
 
     private void OnEat()
     {
-        if (manager.food > 0)        
-            manager.food--;
-        else
-        {
-            // no food to eat
-            promptText.text = "Need More Food!";
-        }
+        
 
     }
 

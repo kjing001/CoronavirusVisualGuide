@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIMarket : MonoBehaviour
 {
     [Tooltip("Food Buttons, will automatcially find children of type UIFoodButton")]
-    public UIFoodButton[] foodButtons;
+    public Button[] foodButtons;
 
     [HideInInspector]
     public int selectedID = -1;
@@ -29,13 +29,24 @@ public class UIMarket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foodButtons = GetComponentsInChildren<UIFoodButton>();
+        foodButtons = GetComponentsInChildren<Button>();
+        for (int i = 0; i < foodButtons.Length; i++)
+        {
+            int temp = i;
+            foodButtons[i].onClick.AddListener(() => OnFoodClicked(temp));
+        }
 
         buyButton.onClick.AddListener(OnBuyClicked);
         nahButton.onClick.AddListener(OnNahClicked);
 
         infoPanel.SetActive(false);
         foodsForSale = FoodManager.instance.foodsForSale;
+    }
+
+    void OnFoodClicked(int id)
+    {
+        selectedID = id;
+        ShowInfo(selectedID);
     }
 
     private void OnNahClicked()

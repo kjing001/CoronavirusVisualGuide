@@ -9,7 +9,7 @@ public class UIFoodBar : UIBar
     {
         base.Start();
         manager.OnFoodChange.AddListener(OnValueChange);
-        maxValue = manager.maxFood;
+        maxValue = manager.maxFoodCount;
         OnValueChange();
 
         print(maxLength);
@@ -24,7 +24,7 @@ public class UIFoodBar : UIBar
         print(maxValue);
 
         // update the visuals of food bar
-        value = manager.food;
+        value = manager.myFoods.Count;
         currentLenght = value / maxValue * maxLength;
         front.sizeDelta = new Vector2(currentLenght, height);
     }

@@ -14,20 +14,15 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnFoodChange;
 
     [Range (1, 20)]
-    public float maxFood = 20;
-
-    private float m_Food = 10;
-    public float food
-    {
-        get { return m_Food; }
-        set
-        {
-            m_Food = value;
-            OnFoodChange.Invoke();
-        }
-    }    
+    public float maxFoodCount = 20;
 
     public List<Food> myFoods = new List<Food>();
+
+    public void AddFood(Food food)
+    {
+        myFoods.Add(food);
+        OnFoodChange.Invoke();
+    }
 
     private void Awake()
     {
@@ -51,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            food++;
+            AddFood(FoodManager.instance.beef);
         }
     }
 

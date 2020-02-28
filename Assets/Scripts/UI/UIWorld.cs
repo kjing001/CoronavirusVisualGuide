@@ -7,18 +7,23 @@ using UnityEngine.UI;
 public class UIWorld : MonoBehaviour
 {
     public Button marketButton;
-    public Button foodButton;
-    public Button goOutButton;
+    public Button marketExitButton;
+    public GameObject market;
+    public GameObject background;
 
     // Start is called before the first frame update
     void Start()
     {
-        marketButton.onClick.AddListener(OnMarketClicked);
+        marketButton.onClick.AddListener(()=>ShowMarket(true));
+        marketExitButton.onClick.AddListener(() => ShowMarket(false));
+        ShowMarket(false);
     }
 
-    private void OnMarketClicked()
+    void ShowMarket(bool show)
     {
-        throw new NotImplementedException();
+        market.SetActive(show);
+        marketButton.gameObject.SetActive(!show);
+        background.SetActive(!show);
     }
 
     // Update is called once per frame

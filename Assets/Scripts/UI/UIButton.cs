@@ -26,20 +26,4 @@ public class UIButton : MonoBehaviour
         id = transform.GetSiblingIndex();
     }
 
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
-        button.onClick.AddListener(OnClicked);
-    }
-
-    protected virtual void OnClicked()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
