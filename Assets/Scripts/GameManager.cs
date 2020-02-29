@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public float money;
-    public float immune;
-    public float mentalHealth;
+    public float hp;
+    public float mp;
 
     public UnityEvent OnFoodChange;
     public GameObject foodItemPrefab;

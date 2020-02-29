@@ -9,12 +9,14 @@ public class UIHomeFoodPanel : MonoBehaviour
     public Text foodCountText;
     public Text foodInfoText;
 
-    public Text promptText;
+    public Text consoleText;
 
     public Button eatButton;
     GameManager manager;
 
-    public Button[] foodButtons;
+    public UIFoodItem[] myFoodItems;
+
+    public Button closeButton;
 
     int selectedID;
 
@@ -23,14 +25,21 @@ public class UIHomeFoodPanel : MonoBehaviour
     {
         manager = GameManager.instance;
         eatButton.onClick.AddListener(OnEat);
+        closeButton.onClick.AddListener(OnClose);
+    }
 
-        foodButtons = GetComponentsInChildren<Button>();
-        for (int i = 0; i < foodButtons.Length; i++)
+    private void OnEnable()
+    {
+        myFoodItems = GetComponentsInChildren<UIFoodItem>();
+        foreach (var item in myFoodItems)
         {
-            int t = i;
-            foodButtons[i].onClick.AddListener(() => OnFoodClicked(t));
+            item.button.onClick.AddListener(() => OnFoodClicked(item.id));
         }
+    }
 
+    private void OnClose()
+    {
+        gameObject.SetActive(false);
     }
 
     void OnFoodClicked(int id)
@@ -40,8 +49,13 @@ public class UIHomeFoodPanel : MonoBehaviour
 
     private void OnEat()
     {
-        
+        Food selectedFood = myFoodItems[selectedID].food;
+        manager.hp += selectedFood.hp;
+        manager.mp += selectedFood.mp;
+        consoleText.text = "Used " + selectedFood.name +
+            ", + " + selectedFood.hp + "HP , + " + selectedFood.mp + "MP";
 
+        manager.myFoods.Remove(selectedFood);
     }
 
 

@@ -24,7 +24,7 @@ public class UIMarket : MonoBehaviour
     // mapping from buttonID to foodID
     int[] foodIDs;
 
-    List<Food> foods;
+    List<Food> foodsForSale;
 
     GameManager gameManager;
 
@@ -42,7 +42,6 @@ public class UIMarket : MonoBehaviour
     private void OnEnable()
     {
         foodItems = foodForSaleLayout.GetComponentsInChildren<UIFoodItem>();
-        Debug.Log(foodItems.Length);
         foreach (var item in foodItems)
         {
             item.button.onClick.AddListener(() => OnFoodClicked(item.id));
@@ -64,7 +63,10 @@ public class UIMarket : MonoBehaviour
 
     private void OnBuyClicked()
     {
-        //gameManager.AddFood()
+        if (selectedID == -1)
+            return;
+
+        gameManager.AddFoodToMyFoods(foodItems[selectedID].food);
     }
 
     public void ShowInfo(int id)
@@ -72,17 +74,17 @@ public class UIMarket : MonoBehaviour
         infoPanel.SetActive(true);
 
         // assuming buttonID is the order that food is put in the foodForSale list
-        foods = gameManager.marketFoods;
-        foodNameText.text = foods[id].name;
+        foodsForSale = gameManager.marketFoods;
+        foodNameText.text = foodsForSale[id].name;
         foodInfoText.text = "";
-        if (foods[id].hp != 0)
-            foodInfoText.text += "+ " + foods[id].hp + "MP\n";
-        if (foods[id].mp != 0)
-            foodInfoText.text += "+ " + foods[id].mp + "MP\n";
+        if (foodsForSale[id].hp != 0)
+            foodInfoText.text += "+ " + foodsForSale[id].hp + "HP\n";
+        if (foodsForSale[id].mp != 0)
+            foodInfoText.text += "+ " + foodsForSale[id].mp + "MP\n";
 
-        foodInfoText.text += "Price: " + foods[id].price + "$\n\n";
+        foodInfoText.text += "Price: " + foodsForSale[id].price + "$\n\n";
 
-        foodInfoText.text += foods[id].info;
+        foodInfoText.text += foodsForSale[id].info;
     }
 
     // Update is called once per frame
