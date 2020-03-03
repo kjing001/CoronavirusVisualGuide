@@ -88,14 +88,14 @@ public class UIHomeFood : MonoBehaviour
             for (int i = 0; i < manager.myFoods.Count; ++i)
             {
                 UIInventorySlot slot = content.GetChild(i).GetComponent<UIInventorySlot>();
-
+                
             }
-        }
-
+        }        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

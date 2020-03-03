@@ -2802,6 +2802,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodInfoText: {fileID: 648095813}
+  panel: {fileID: 1994313680}
+  slotPrefab: {fileID: 5340096102103055795, guid: 1e1306cd456e3384cb65e00867761557,
+    type: 3}
+  content: {fileID: 1285933724}
   consoleText: {fileID: 2088454431}
   eatButton: {fileID: 1730670582}
   myFoodItems: []
@@ -3012,7 +3016,7 @@ GameObject:
   - component: {fileID: 1285933724}
   - component: {fileID: 1285933725}
   m_Layer: 5
-  m_Name: FoodLayout
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

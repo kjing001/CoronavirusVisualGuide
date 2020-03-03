@@ -11,5 +11,6 @@ public class UIInventorySlot : MonoBehaviour
     public Image image;
     public Image cooldownCircle;
     public GameObject amountOverlay;
+    public Text nameText;
     public Text amountText;
 }
