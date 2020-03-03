@@ -56,38 +56,38 @@ public static class Extensions
     // - B: B is not on a NavMesh, CalulatePath doesn't work here. We need to
     //   find the nearest point on a NavMesh first (might be A or C) and then
     //   calculate the nearest valid one (A)
-    public static Vector2 NearestValidDestination(this NavMeshAgent2D agent, Vector2 destination)
-    {
-        // can we calculate a path there? then return the closest valid point
-        NavMeshPath2D path = new NavMeshPath2D();
-        if (agent.CalculatePath(destination, path))
-            return path.corners[path.corners.Length - 1];
+    //public static Vector2 NearestValidDestination(this NavMeshAgent2D agent, Vector2 destination)
+    //{
+    //    // can we calculate a path there? then return the closest valid point
+    //    NavMeshPath2D path = new NavMeshPath2D();
+    //    if (agent.CalculatePath(destination, path))
+    //        return path.corners[path.corners.Length - 1];
 
-        // otherwise find nearest navmesh position first. we use a radius of
-        // speed*2 which works fine. afterwards we find the closest valid point.
-        if (NavMesh.SamplePosition(new Vector3(destination.x, 0, destination.y), out NavMeshHit hit, agent.speed * 2, NavMesh.AllAreas))
-        {
-            Vector2 hitPosition2D = new Vector2(hit.position.x, hit.position.z);
-            if (agent.CalculatePath(hitPosition2D, path))
-                return path.corners[path.corners.Length - 1];
-        }
+    //    // otherwise find nearest navmesh position first. we use a radius of
+    //    // speed*2 which works fine. afterwards we find the closest valid point.
+    //    if (NavMesh.SamplePosition(new Vector3(destination.x, 0, destination.y), out NavMeshHit hit, agent.speed * 2, NavMesh.AllAreas))
+    //    {
+    //        Vector2 hitPosition2D = new Vector2(hit.position.x, hit.position.z);
+    //        if (agent.CalculatePath(hitPosition2D, path))
+    //            return path.corners[path.corners.Length - 1];
+    //    }
 
-        // nothing worked, don't go anywhere.
-        return agent.transform.position;
-    }
+    //    // nothing worked, don't go anywhere.
+    //    return agent.transform.position;
+    //}
 
-    // NavMeshAgent's ResetPath() function clears the path, but doesn't clear
-    // the velocity immediately. This is a nightmare for finite state machines
-    // because we often reset a path, then switch to casting, which would then
-    // receive a movement event because velocity still isn't 0 until a few
-    // frames later.
-    //
-    // We need a function that truly stops all movement.
-    public static void ResetMovement(this NavMeshAgent2D agent)
-    {
-        agent.ResetPath();
-        agent.velocity = Vector2.zero;
-    }
+    //// NavMeshAgent's ResetPath() function clears the path, but doesn't clear
+    //// the velocity immediately. This is a nightmare for finite state machines
+    //// because we often reset a path, then switch to casting, which would then
+    //// receive a movement event because velocity still isn't 0 until a few
+    //// frames later.
+    ////
+    //// We need a function that truly stops all movement.
+    //public static void ResetMovement(this NavMeshAgent2D agent)
+    //{
+    //    agent.ResetPath();
+    //    agent.velocity = Vector2.zero;
+    //}
 
     // check if a list has duplicates
     // new List<int>(){1, 2, 2, 3}.HasDuplicates() => true
