@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manages game states and player resources
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    public float money;
-    public float hp;
-    public float mp;
 
     public UnityEvent OnFoodChange;
     public GameObject foodItemPrefab;
@@ -18,20 +17,10 @@ public class GameManager : MonoBehaviour
     public Transform marketFoodLayout;
 
     [Range (1, 20)]
-    public float maxFoodCount = 20;
+    public int foodSlotCount = 20;
 
-    public List<Food> myFoods = new List<Food>();
-    public List<Food> marketFoods = new List<Food>();
-
-    public void AddFoodToMyFoods(Food food)
-    {
-        myFoods.Add(food);
-
-        // add an item to the food panel at home
-        UIFoodItem foodItem = Instantiate(foodItemPrefab, homeFoodLayout).GetComponent<UIFoodItem>();
-        foodItem.food = food;
-        foodItem.ShowFoodItemInfo();
-    }
+    [Header("FoodItems for Sale")]
+    public List<FoodItem> saleFoodItems;
 
     private void Awake()
     {
@@ -41,21 +30,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // initial food information
-        marketFoods.Add(FoodDB.chicken);
-        marketFoods.Add(FoodDB.fruit);
-        marketFoods.Add(FoodDB.vegetables);
-        marketFoods.Add(FoodDB.beef);
-        marketFoods.Add(FoodDB.egg);
-        marketFoods.Add(FoodDB.water);
 
-        // create ui food items on the market
-        for (int i = 0; i < marketFoods.Count; i++)
-        {
-            UIFoodItem foodItem = Instantiate(foodItemPrefab, marketFoodLayout).GetComponent<UIFoodItem>();
-            foodItem.food = marketFoods[i];
-            //foodItem.ShowFoodItemInfo();
-        }
 
     }
 
@@ -69,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            AddFoodToMyFoods(FoodDB.beef);
+            //AddFoodToMyFoods(FoodDB.beef);
         }
     }
 

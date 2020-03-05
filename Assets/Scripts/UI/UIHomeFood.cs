@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class UIHomeFood : MonoBehaviour
 {
-    public Text foodInfoText;
+    public KeyCode hotKey = KeyCode.F;
+    public Text foodToolTipText;
     public GameObject panel;
     public UIInventorySlot slotPrefab;
     public Transform content;
@@ -15,8 +16,7 @@ public class UIHomeFood : MonoBehaviour
 
     public Button eatButton;
     GameManager manager;
-
-    public List<UIFoodItem> myFoodItems;
+    Player player;
 
     public Button closeButton;
 
@@ -26,55 +26,56 @@ public class UIHomeFood : MonoBehaviour
     void Start()
     {
         manager = GameManager.instance;
-        eatButton.onClick.AddListener(OnEat);
+        player = Player.instance;
+        eatButton.onClick.AddListener(OnEatClicked);
     }
 
     private void OnEnable()
     {
-        var items = GetComponentsInChildren<UIFoodItem>();
-        for (int i = 0; i < items.Length; i++)
-        {
-            myFoodItems.Add(items[i]);
-            items[i].button.onClick.AddListener(() => OnFoodClicked(items[i].id));
-        }
+        UpdatePanel();
+        ShowUnselectedState();
     }
-    private void OnDisable()
+    
+    void ShowUnselectedState()
     {
-        var items = GetComponentsInChildren<UIFoodItem>();
-        foreach (var item in items)
+        selectedID = -1;
+
+        // hide tooltip in the tooltip area
+        foodToolTipText.text = "";
+
+        // hide the eat button
+        eatButton.gameObject.SetActive(false);
+    }
+
+    void OnFoodSlotClicked(int id)
+    {
+        if (selectedID != id)
         {
-            item.button.onClick.RemoveAllListeners();
+            selectedID = id;
+
+            // show tooltip in the tooltip area
+            foodToolTipText.text = player.food[selectedID].ToolTip();
+
+            // show the eat button
+            eatButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            ShowUnselectedState();
         }
     }
 
-    void OnFoodClicked(int id)
-    {
-        selectedID = id;
-    }
-
-    private void OnEat()
+    void OnEatClicked()
     {
         if (selectedID == -1)
             return;
 
-        print("selected ID: " + selectedID);
+        print("Eating selected ID: " + selectedID);
 
-        Food selectedFood = manager.myFoods[selectedID];
-        manager.hp += selectedFood.hp;
-        manager.mp += selectedFood.mp;
-        consoleText.text = "Used " + selectedFood.name +
-            ", + " + selectedFood.hp + "HP , + " + selectedFood.mp + "MP";
+        player.EatFood(selectedID);
 
-        manager.myFoods.Remove(selectedFood);
-        myFoodItems.RemoveAt(selectedID);
-        Destroy(myFoodItems[selectedID].gameObject);
-        //myFoodItems = GetComponentsInChildren<UIFoodItem>();
-        foreach (var item in myFoodItems)
-        {
-            item.button.onClick.RemoveAllListeners();
-            item.button.onClick.AddListener(() => OnFoodClicked(item.id));
-        }
-        selectedID = -1;
+        // reset listeners and items
+        UpdatePanel();
     }
 
     public void UpdatePanel()
@@ -82,13 +83,29 @@ public class UIHomeFood : MonoBehaviour
         if (panel.activeSelf)
         {
             // instantiate/destroy enough slots
-            UIUtils.BalancePrefabs(slotPrefab.gameObject, manager.myFoods.Count, content);
+            UIUtils.BalancePrefabs(slotPrefab.gameObject, player.food.Count, content);
 
             // refresh all items
-            for (int i = 0; i < manager.myFoods.Count; ++i)
+            for (int i = 0; i < player.food.Count; ++i)
             {
                 UIInventorySlot slot = content.GetChild(i).GetComponent<UIInventorySlot>();
-                
+                ItemSlot itemSlot = player.food[i];
+
+                if (itemSlot.amount > 0)
+                {
+                    int icopy = i; // needed for lambdas, otherwise i is Count
+                    slot.button.onClick.SetListener(() => OnFoodSlotClicked(icopy));
+                }
+                else
+                {
+                    // refresh invalid item
+                    slot.button.onClick.RemoveAllListeners();
+                    slot.image.color = Color.clear;
+                    slot.image.sprite = null;
+                    slot.cooldownCircle.fillAmount = 0;
+                    slot.amountOverlay.SetActive(false);
+                }
+
             }
         }        
     }
@@ -96,6 +113,8 @@ public class UIHomeFood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // hotkey (not while typing in chat, etc.)
+        if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
+            panel.SetActive(!panel.activeSelf);
     }
 }
