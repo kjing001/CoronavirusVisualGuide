@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdea6cb82025fbc4f87a4c3123e63963, type: 3}
   m_Name: Chichen
   m_EditorClassIdentifier: 
-  maxStack: 0
-  price: 0
+  maxStack: 5
+  price: 3
   destroyable: 0
-  toolTip: 
-  image: {fileID: 0}
+  toolTip: Chicken
+  image: {fileID: 21300000, guid: d7b26f48ee4f94e43b5eb004f428afae, type: 3}
   cooldown: 0
   _cooldownCategory: 
-  hp: 0
-  mp: 0
+  hp: 4
+  mp: 4

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdea6cb82025fbc4f87a4c3123e63963, type: 3}
   m_Name: Beef
   m_EditorClassIdentifier: 
-  maxStack: 0
-  price: 0
+  maxStack: 4
+  price: 4
   destroyable: 0
-  toolTip: 
-  image: {fileID: 0}
-  hp: 0
-  mp: 0
+  toolTip: Prime Beef, very delicious
+  image: {fileID: 21300000, guid: 5aeb881088b824159832fe4bc3bc2dc6, type: 3}
+  cooldown: 0
+  _cooldownCategory: 
+  hp: 5
+  mp: 5

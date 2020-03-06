@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Item/Food", order = 999)]
@@ -32,4 +33,11 @@ public class FoodItem : UsableItem
         tip.Replace("{USAGEMANA}", mp.ToString());
         return tip.ToString();
     }
+}
+
+[Serializable]
+public struct FoodItemAndAmount
+{
+    public FoodItem item;
+    public int amount;
 }

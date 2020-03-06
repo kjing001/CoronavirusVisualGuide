@@ -47,14 +47,14 @@ public class UIFoodMarket : MonoBehaviour
         if (gameManager == null)
             gameManager = GameManager.instance;
 
-        int length = gameManager.saleFoodItems.Count;
+        int length = gameManager.saleFood.Count;
         UIUtils.BalancePrefabs(slotPrefab.gameObject, length, content);
 
         for (int i = 0; i < length; i++)
         {
             UIMarketSlot slot = content.GetChild(i).GetComponent<UIMarketSlot>();
-            FoodItem foodItemData = gameManager.saleFoodItems[i];
 
+            FoodItemAndAmount foodItemAndAmount = gameManager.saleFood[i];
 
             // add select id
             int icopy = i;
@@ -62,7 +62,9 @@ public class UIFoodMarket : MonoBehaviour
 
             // show item in UI
             slot.image.color = Color.white;
-            slot.image.sprite = foodItemData.image;
+            slot.image.sprite = foodItemAndAmount.item.image;
+            slot.nameText.text = "";
+            slot.amountText.text = foodItemAndAmount.amount.ToString();
         }
     }
 
@@ -90,7 +92,7 @@ public class UIFoodMarket : MonoBehaviour
     {
         infoPanel.SetActive(true);
 
-        FoodItem food = gameManager.saleFoodItems[id];
+        FoodItem food = gameManager.saleFood[id].item;
         foodNameText.text = food.name;
         foodInfoText.text = food.ToolTip();        
     }

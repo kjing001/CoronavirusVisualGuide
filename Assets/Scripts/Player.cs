@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
         
     }
 
+
+    /// <param name="index"> index of saleFood </param>
     public void BuyFood(int index)
     {
 

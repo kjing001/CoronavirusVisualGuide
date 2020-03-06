@@ -8,7 +8,7 @@ using System.Text;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Item/General", order = 999)]
-public partial class ScriptableItem : ScriptableObjectNonAlloc
+public class ScriptableItem : ScriptableObjectNonAlloc
 {
     [Header("Base Stats")]
     public int maxStack;
@@ -82,7 +82,7 @@ public partial class ScriptableItem : ScriptableObjectNonAlloc
 
 // ScriptableItem + Amount is useful for default items (e.g. spawn with 10 potions)
 [Serializable]
-public struct ScriptableItemAndAmount
+public struct ItemAndAmount
 {
     public ScriptableItem item;
     public int amount;

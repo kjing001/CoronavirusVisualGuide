@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 22299496}
   - component: {fileID: 11402484}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -414,8 +414,8 @@ MonoBehaviour:
   button: {fileID: 11433488}
   image: {fileID: 11428556}
   amountOverlay: {fileID: 176822}
-  nameText: {fileID: 11402484}
-  amountText: {fileID: 6047147387416237326}
+  nameText: {fileID: 6047147387416237326}
+  amountText: {fileID: 11402484}
 --- !u!1 &4619116613051045507
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 3708965658398296895}
   - component: {fileID: 6047147387416237326}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,4 +492,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Food
+  m_Text: 

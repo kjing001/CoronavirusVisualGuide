@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIHomeFood : MonoBehaviour
 {
-    public KeyCode hotKey = KeyCode.F;
     public Text foodToolTipText;
     public GameObject panel;
     public UIInventorySlot slotPrefab;
@@ -121,10 +120,5 @@ public class UIHomeFood : MonoBehaviour
     void Update()
     {
 
-        //UpdatePanel();
-
-        //// hotkey (not while typing in chat, etc.)
-        //if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
-        //    panel.SetActive(!panel.activeSelf);
     }
 }

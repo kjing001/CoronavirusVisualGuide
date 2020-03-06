@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     [Range (1, 20)]
     public int foodSlotCount = 20;
 
-    [Header("FoodItems for Sale")]
-    public List<FoodItem> saleFoodItems;
+    [Header("Food for Sale")]
+    public List<FoodItemAndAmount> saleFood;
 
     private void Awake()
     {
