@@ -920,8 +920,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.8, y: 0}
-  m_SizeDelta: {x: 158.4, y: 150}
+  m_AnchoredPosition: {x: -1, y: 0}
+  m_SizeDelta: {x: 120.7, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427159265
 MonoBehaviour:
@@ -954,7 +954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: 
 --- !u!222 &427159266
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1965,8 +1965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.425, y: 183.3}
-  m_SizeDelta: {x: 1507.2, y: 332.1}
+  m_AnchoredPosition: {x: -5.425, y: 181.8}
+  m_SizeDelta: {x: 1507.2, y: 335.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &853545177
 MonoBehaviour:
@@ -3545,8 +3545,11 @@ MonoBehaviour:
   infoPanel: {fileID: 2125202481}
   foodImage: {fileID: 1371792336}
   foodInfoText: {fileID: 2002267266}
+  amountText: {fileID: 427159265}
   content: {fileID: 853545176}
   buyButton: {fileID: 1567901447}
+  plusButton: {fileID: 251171486}
+  minusButton: {fileID: 871715587}
 --- !u!1 &1550133243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,8 +4386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.7, y: -0.0000076293945}
-  m_SizeDelta: {x: 1455.4, y: 175.1}
+  m_AnchoredPosition: {x: -0.000019073, y: 0.000016212}
+  m_SizeDelta: {x: 1455.4, y: 157}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002267266
 MonoBehaviour:

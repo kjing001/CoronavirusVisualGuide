@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class UIFoodMarket : MonoBehaviour
 {
     public int selectedID = -1;
-    int amount;
+    int m_Amount;
+    int amount { get { return m_Amount; } set { m_Amount = value;  amountText.text = value.ToString(); } }
     public UIMarketSlot slotPrefab;
     // food info panel
     public GameObject infoPanel;
@@ -34,8 +35,30 @@ public class UIFoodMarket : MonoBehaviour
         player = Player.instance;
 
         buyButton.onClick.AddListener(OnBuyClicked);
+        plusButton.onClick.AddListener(OnPlusClicked);
+        minusButton.onClick.AddListener(OnMinusClicked);
 
         infoPanel.SetActive(false);
+        selectedID = -1;
+        amount = 0;
+    }
+
+    private void OnMinusClicked()
+    {
+        amount = (amount > 0) ? amount - 1 : 0;
+    }
+
+    private void OnPlusClicked()
+    {
+        if (selectedID == -1)
+        {
+            amount++;
+        }
+        else
+        {
+            int maxAmount = gameManager.saleFood[selectedID].amount;
+            amount = (amount < maxAmount) ? amount + 1 : maxAmount;             
+        }
     }
 
     private void OnEnable()
@@ -80,7 +103,6 @@ public class UIFoodMarket : MonoBehaviour
             selectedID = id;
             amount = 0;
             ShowFoodTooltip(selectedID);
-
         }
         
     }
