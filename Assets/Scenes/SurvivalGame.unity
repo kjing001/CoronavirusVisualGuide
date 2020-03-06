@@ -3543,12 +3543,10 @@ MonoBehaviour:
   slotPrefab: {fileID: 6917421137240699438, guid: 793ab40104320904dbc6cdaeed2c75f4,
     type: 3}
   infoPanel: {fileID: 2125202481}
-  foodImage: {fileID: 0}
-  foodNameText: {fileID: 0}
+  foodImage: {fileID: 1371792336}
   foodInfoText: {fileID: 2002267266}
   content: {fileID: 853545176}
-  buyButton: {fileID: 0}
-  nahButton: {fileID: 0}
+  buyButton: {fileID: 1567901447}
 --- !u!1 &1550133243
 GameObject:
   m_ObjectHideFlags: 0

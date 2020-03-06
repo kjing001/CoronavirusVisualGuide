@@ -7,16 +7,18 @@ using UnityEngine.UI;
 public class UIFoodMarket : MonoBehaviour
 {
     public int selectedID = -1;
+    int amount;
     public UIMarketSlot slotPrefab;
     // food info panel
     public GameObject infoPanel;
     public Image foodImage;
-    public Text foodNameText;
     public Text foodInfoText;
+    public Text amountText;
     public Transform content;
     public Button buyButton;
-    public Button nahButton;
-    
+    public Button plusButton;
+    public Button minusButton;  
+
     GameManager gameManager;
     Player player;
 
@@ -32,7 +34,6 @@ public class UIFoodMarket : MonoBehaviour
         player = Player.instance;
 
         buyButton.onClick.AddListener(OnBuyClicked);
-        nahButton.onClick.AddListener(OnNahClicked);
 
         infoPanel.SetActive(false);
     }
@@ -40,6 +41,10 @@ public class UIFoodMarket : MonoBehaviour
     private void OnEnable()
     {
         UpdatePanel();
+    }
+    private void OnDisable()
+    {
+        selectedID = -1;
     }
 
     void UpdatePanel()
@@ -70,14 +75,14 @@ public class UIFoodMarket : MonoBehaviour
 
     void OnFoodClicked(int id)
     {
-        selectedID = id;
-        ShowFoodTooltip(selectedID);
-    }
+        if (selectedID != id)
+        {
+            selectedID = id;
+            amount = 0;
+            ShowFoodTooltip(selectedID);
 
-    private void OnNahClicked()
-    {
-        infoPanel.SetActive(false);
-        selectedID = -1;
+        }
+        
     }
 
     private void OnBuyClicked()
@@ -93,7 +98,6 @@ public class UIFoodMarket : MonoBehaviour
         infoPanel.SetActive(true);
 
         FoodItem food = gameManager.saleFood[id].item;
-        foodNameText.text = food.name;
         foodInfoText.text = food.ToolTip();        
     }
 
