@@ -10,8 +10,8 @@ public class UIWorld : MonoBehaviour
     public Button homeButton;
     public Button marketExitButton;
     public Button homeExitButton;
-    public GameObject market;
-    public GameObject home;
+    public GameObject marketPanel;
+    public GameObject homePanel;
     public GameObject background;
 
 
@@ -27,7 +27,7 @@ public class UIWorld : MonoBehaviour
 
     void ShowMarket(bool show)
     {
-        market.SetActive(show);
+        marketPanel.SetActive(show);
         homeButton.gameObject.SetActive(!show);
         marketButton.gameObject.SetActive(!show);
         background.SetActive(!show);
@@ -35,7 +35,7 @@ public class UIWorld : MonoBehaviour
     
     void ShowHome(bool show)
     {
-        home.SetActive(show);
+        homePanel.SetActive(show);
         homeButton.gameObject.SetActive(!show);
         marketButton.gameObject.SetActive(!show);
         background.SetActive(!show);

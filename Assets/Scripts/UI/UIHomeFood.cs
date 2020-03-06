@@ -22,11 +22,16 @@ public class UIHomeFood : MonoBehaviour
 
     int selectedID;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         manager = GameManager.instance;
         player = Player.instance;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        panel.SetActive(false);
         eatButton.onClick.AddListener(OnEatClicked);
     }
 
@@ -107,14 +112,19 @@ public class UIHomeFood : MonoBehaviour
                 }
 
             }
-        }        
+        }
+        
+              
     }
 
     // Update is called once per frame
     void Update()
     {
-        // hotkey (not while typing in chat, etc.)
-        if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
-            panel.SetActive(!panel.activeSelf);
+
+        //UpdatePanel();
+
+        //// hotkey (not while typing in chat, etc.)
+        //if (Input.GetKeyDown(hotKey) && !UIUtils.AnyInputActive())
+        //    panel.SetActive(!panel.activeSelf);
     }
 }

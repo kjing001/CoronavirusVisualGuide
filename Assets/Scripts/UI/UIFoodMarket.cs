@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIFoodMarket : MonoBehaviour
 {
     public int selectedID = -1;
-    public UIButton slotPrefab;
+    public UIMarketSlot slotPrefab;
     // food info panel
     public GameObject infoPanel;
     public Image foodImage;
@@ -19,6 +19,12 @@ public class UIFoodMarket : MonoBehaviour
     
     GameManager gameManager;
     Player player;
+
+    private void Awake()
+    {
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +44,15 @@ public class UIFoodMarket : MonoBehaviour
 
     void UpdatePanel()
     {
+        if (gameManager == null)
+            gameManager = GameManager.instance;
+
         int length = gameManager.saleFoodItems.Count;
         UIUtils.BalancePrefabs(slotPrefab.gameObject, length, content);
 
         for (int i = 0; i < length; i++)
         {
-            UIButton slot = content.GetChild(i).GetComponent<UIButton>();
+            UIMarketSlot slot = content.GetChild(i).GetComponent<UIMarketSlot>();
             FoodItem foodItemData = gameManager.saleFoodItems[i];
 
 

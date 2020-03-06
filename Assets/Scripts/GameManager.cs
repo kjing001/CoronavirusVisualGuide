@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public UnityEvent OnFoodChange;
-    public GameObject foodItemPrefab;
     public Transform homeFoodLayout;
     public Transform marketFoodLayout;
 
