@@ -8,13 +8,19 @@ public class UIFoodMarket : MonoBehaviour
 {
     public int selectedID = -1;
     int m_Amount;
-    int amount { get { return m_Amount; } set { m_Amount = value;  amountText.text = value.ToString(); } }
+    int amount { get { return m_Amount; } set { m_Amount = value; amountText.text = value.ToString(); } }
+
+    float unitPrice;
+    float m_Price;
+    float price { get { return m_Price; } set { m_Price = value; priceText.text = value.ToString(); } }
+
     public UIMarketSlot slotPrefab;
     // food info panel
     public GameObject infoPanel;
     public Image foodImage;
     public Text foodInfoText;
     public Text amountText;
+    public Text priceText;
     public Transform content;
     public Button buyButton;
     public Button plusButton;
@@ -45,7 +51,8 @@ public class UIFoodMarket : MonoBehaviour
 
     private void OnMinusClicked()
     {
-        amount = (amount > 0) ? amount - 1 : 0;
+        amount = (amount > 1) ? amount - 1 : 1;
+        price = unitPrice * amount;
     }
 
     private void OnPlusClicked()
@@ -57,7 +64,8 @@ public class UIFoodMarket : MonoBehaviour
         else
         {
             int maxAmount = gameManager.saleFood[selectedID].amount;
-            amount = (amount < maxAmount) ? amount + 1 : maxAmount;             
+            amount = (amount < maxAmount) ? amount + 1 : maxAmount;
+            price = unitPrice * amount;
         }
     }
 
@@ -101,10 +109,12 @@ public class UIFoodMarket : MonoBehaviour
         if (selectedID != id)
         {
             selectedID = id;
-            amount = 0;
+            amount = 1;
+            unitPrice = gameManager.saleFood[selectedID].item.price;
+            price = unitPrice;
             ShowFoodTooltip(selectedID);
         }
-        
+        foodImage.sprite = gameManager.saleFood[selectedID].item.image;
     }
 
     private void OnBuyClicked()

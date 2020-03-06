@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdea6cb82025fbc4f87a4c3123e63963, type: 3}
   m_Name: Beef
   m_EditorClassIdentifier: 
-  maxStack: 4
+  maxStack: 10
   price: 4
   destroyable: 0
   toolTip: Prime Beef, very delicious
