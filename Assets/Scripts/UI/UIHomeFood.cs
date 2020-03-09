@@ -23,19 +23,23 @@ public class UIHomeFood : MonoBehaviour
 
     private void Awake()
     {
-        manager = GameManager.instance;
-        player = Player.instance;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameManager.instance;
+        player = Player.instance;
         panel.SetActive(false);
         eatButton.onClick.AddListener(OnEatClicked);
     }
 
     private void OnEnable()
     {
+        if (player == null)
+            player = Player.instance;
+
         UpdatePanel();
         ShowUnselectedState();
     }
@@ -58,7 +62,7 @@ public class UIHomeFood : MonoBehaviour
             selectedID = id;
 
             // show tooltip in the tooltip area
-            foodToolTipText.text = player.food[selectedID].ToolTip();
+            foodToolTipText.text = player.food[selectedID].item.ToolTip();
 
             // show the eat button
             eatButton.gameObject.SetActive(true);
@@ -85,7 +89,7 @@ public class UIHomeFood : MonoBehaviour
     public void UpdatePanel()
     {
         if (panel.activeSelf)
-        {
+        {            
             // instantiate/destroy enough slots
             UIUtils.BalancePrefabs(slotPrefab.gameObject, player.food.Count, content);
 
@@ -93,12 +97,18 @@ public class UIHomeFood : MonoBehaviour
             for (int i = 0; i < player.food.Count; ++i)
             {
                 UIInventorySlot slot = content.GetChild(i).GetComponent<UIInventorySlot>();
-                ItemSlot itemSlot = player.food[i];
+                FoodItemAndAmount food = player.food[i];
 
-                if (itemSlot.amount > 0)
+                if (food.amount > 0)
                 {
                     int icopy = i; // needed for lambdas, otherwise i is Count
                     slot.button.onClick.SetListener(() => OnFoodSlotClicked(icopy));
+
+                    // show images and amount text
+                    slot.image.color = Color.white;
+                    slot.image.sprite = food.item.image;
+                    slot.amountText.text = food.amount.ToString();
+
                 }
                 else
                 {

@@ -12,7 +12,7 @@ public class ScriptableItem : ScriptableObjectNonAlloc
 {
     [Header("Base Stats")]
     public int maxStack;
-    public float price;
+    public long price;
     public bool destroyable;
     [SerializeField, TextArea(1, 30)] protected string toolTip; // not public, use ToolTip()
     public Sprite image;

@@ -20,9 +20,9 @@ public class FoodItem : UsableItem
         player.mp += mp;
 
         // decrease amount in inventory
-        ItemSlot slot = player.food[inventoryIndex];
-        slot.DecreaseAmount(1);
-        player.food[inventoryIndex] = slot;
+        FoodItemAndAmount food = player.food[inventoryIndex];
+        food.amount--;
+        player.food[inventoryIndex] = food;
     }
 
     // tooltip
@@ -40,4 +40,12 @@ public struct FoodItemAndAmount
 {
     public FoodItem item;
     public int amount;
+
+    // constructors
+    public FoodItemAndAmount(FoodItem item, int amount = 1)
+    {
+        this.item = item;
+        this.amount = amount;
+    }
+
 }

@@ -53,6 +53,8 @@ public class UIFoodMarket : MonoBehaviour
     {
         amount = (amount > 1) ? amount - 1 : 1;
         price = unitPrice * amount;
+
+        buyButton.interactable = amount > 0 && price <= player.money;
     }
 
     private void OnPlusClicked()
@@ -67,6 +69,8 @@ public class UIFoodMarket : MonoBehaviour
             amount = (amount < maxAmount) ? amount + 1 : maxAmount;
             price = unitPrice * amount;
         }
+
+        buyButton.interactable = amount > 0 && price <= player.money;
     }
 
     private void OnEnable()
@@ -119,10 +123,10 @@ public class UIFoodMarket : MonoBehaviour
 
     private void OnBuyClicked()
     {
-        if (selectedID == -1)
+        if (selectedID == -1 || amount <= 0)
             return;
 
-        player.BuyFood(selectedID);
+        player.BuyFood(selectedID, amount);
     }
 
     public void ShowFoodTooltip(int id)
