@@ -11,19 +11,20 @@ public class UIHome : MonoBehaviour
     public Button newsButton;
     public Button foodButton;
     public Button goOutButton;
-
-    public 
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        foodPanel.SetActive(false);
         foodButton.onClick.AddListener(OnFood);
     }
 
     private void OnFood()
     {
         foodPanel.SetActive(!foodPanel.activeSelf);
+
+        if (foodPanel.activeSelf)        
+            foodPanel.transform.parent.GetComponent<UIHomeFood>().UpdatePanel();        
     }
 
     // Update is called once per frame

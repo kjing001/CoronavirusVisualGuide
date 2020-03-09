@@ -31,8 +31,7 @@ public class UIHomeFood : MonoBehaviour
     {
         manager = GameManager.instance;
         player = Player.instance;
-        panel.SetActive(false);
-        eatButton.onClick.AddListener(OnEatClicked);
+        eatButton.onClick.AddListener(OnEatClicked);        
     }
 
     private void OnEnable()
@@ -40,7 +39,6 @@ public class UIHomeFood : MonoBehaviour
         if (player == null)
             player = Player.instance;
 
-        UpdatePanel();
         ShowUnselectedState();
     }
     
@@ -88,40 +86,39 @@ public class UIHomeFood : MonoBehaviour
 
     public void UpdatePanel()
     {
-        if (panel.activeSelf)
-        {            
-            // instantiate/destroy enough slots
-            UIUtils.BalancePrefabs(slotPrefab.gameObject, player.food.Count, content);
+                  
+        // instantiate/destroy enough slots
+        UIUtils.BalancePrefabs(slotPrefab.gameObject, player.food.Count, content);
 
-            // refresh all items
-            for (int i = 0; i < player.food.Count; ++i)
+        // refresh all items
+        for (int i = 0; i < player.food.Count; ++i)
+        {
+            UIInventorySlot slot = content.GetChild(i).GetComponent<UIInventorySlot>();
+            FoodItemAndAmount food = player.food[i];
+
+            if (food.amount > 0)
             {
-                UIInventorySlot slot = content.GetChild(i).GetComponent<UIInventorySlot>();
-                FoodItemAndAmount food = player.food[i];
+                int icopy = i; // needed for lambdas, otherwise i is Count
+                slot.button.onClick.SetListener(() => OnFoodSlotClicked(icopy));
 
-                if (food.amount > 0)
-                {
-                    int icopy = i; // needed for lambdas, otherwise i is Count
-                    slot.button.onClick.SetListener(() => OnFoodSlotClicked(icopy));
-
-                    // show images and amount text
-                    slot.image.color = Color.white;
-                    slot.image.sprite = food.item.image;
-                    slot.amountText.text = food.amount.ToString();
-
-                }
-                else
-                {
-                    // refresh invalid item
-                    slot.button.onClick.RemoveAllListeners();
-                    slot.image.color = Color.clear;
-                    slot.image.sprite = null;
-                    slot.cooldownCircle.fillAmount = 0;
-                    slot.amountOverlay.SetActive(false);
-                }
+                // show images and amount text
+                slot.image.color = Color.white;
+                slot.image.sprite = food.item.image;
+                slot.amountText.text = food.amount.ToString();
 
             }
+            else
+            {
+                // refresh invalid item
+                slot.button.onClick.RemoveAllListeners();
+                slot.image.color = Color.clear;
+                slot.image.sprite = null;
+                slot.cooldownCircle.fillAmount = 0;
+                slot.amountOverlay.SetActive(false);
+            }
+
         }
+        
         
               
     }
