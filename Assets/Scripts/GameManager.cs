@@ -1,8 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+
+
+[Serializable]
+public struct News
+{
+    public string headline;
+    public string content;
+
+    public News(string h, string c)
+    {
+        headline = h;
+        content = c;
+    }
+}
+
+
 
 /// <summary>
 /// Manages game states and player resources
@@ -19,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Food for Sale")]
     public List<FoodItemAndAmount> saleFood;
+
+    [Header("News on computer")]
+    public List<News> news;
 
     private void Awake()
     {

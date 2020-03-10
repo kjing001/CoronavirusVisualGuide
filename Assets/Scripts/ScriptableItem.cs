@@ -13,7 +13,7 @@ public class ScriptableItem : ScriptableObjectNonAlloc
     [Header("Base Stats")]
     public int maxStack;
     public long price;
-    public bool destroyable;
+    //public bool destroyable;
     [SerializeField, TextArea(1, 30)] protected string toolTip; // not public, use ToolTip()
     public Sprite image;
 
@@ -41,7 +41,7 @@ public class ScriptableItem : ScriptableObjectNonAlloc
         // ('string' itself can't be passed as a mutable object)
         StringBuilder tip = new StringBuilder(toolTip);
         tip.Replace("{NAME}", name);
-        tip.Replace("{DESTROYABLE}", (destroyable ? "Yes" : "No"));
+        //tip.Replace("{DESTROYABLE}", (destroyable ? "Yes" : "No"));
         return tip.ToString();
     }
 

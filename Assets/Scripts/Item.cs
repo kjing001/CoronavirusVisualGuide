@@ -42,7 +42,7 @@ public struct Item
     public string name => data.name;
     public int maxStack => data.maxStack;
     public float price => data.price;
-    public bool destroyable => data.destroyable;
+    //public bool destroyable => data.destroyable;
     public Sprite image => data.image;
 
     // tooltip

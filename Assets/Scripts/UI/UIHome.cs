@@ -8,7 +8,6 @@ public class UIHome : MonoBehaviour
 {
     public GameObject foodPanel;
 
-    public Button newsButton;
     public Button foodButton;
     public Button goOutButton;
     
@@ -17,6 +16,7 @@ public class UIHome : MonoBehaviour
     void Start()
     {
         foodButton.onClick.AddListener(OnFood);
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     private void OnFood()
