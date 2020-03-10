@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public float money = startMoney;
 
     public int speed;
-    Camera camera;
 
     public List<FoodItemAndAmount> food = new List<FoodItemAndAmount>();
 
@@ -24,9 +23,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-        camera = Camera.main;
-        
+        instance = this;        
     }
 
     public void SetItemCooldown(string cooldownCategory, float cooldown)

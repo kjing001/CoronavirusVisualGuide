@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1015945993974976}
+  m_IsPrefabParent: 1
+--- !u!1 &1015945993974976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4602852311350238}
+  - component: {fileID: 114545429481434202}
+  - component: {fileID: 114633761559440412}
+  - component: {fileID: 114959533133898574}
+  m_Layer: 0
+  m_Name: CalendarComponent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4602852311350238
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015945993974976}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114545429481434202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015945993974976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48fe3e649bdd4144bc4c46ad6dfe56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114633761559440412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015945993974976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53e4df55b90fcc47bd24abde0eaf204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114959533133898574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015945993974976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736005f6e987ba2459b46edcf9f5f357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoInit: 0
+  BaseEventsCollection: {fileID: 0}
+  StartYear: 2017
+  StartMonth: 1
+  StartDay: 1
+  DaysFromStart: 0
+  ActiveHoursStart: 0
+  ActiveMinutesStart: 0
+  ActiveHoursEnd: 0
+  ActiveMinutesEnd: 0
+  Endless: 0
+  SecondsScale: 0
+  _events: []
+  _eventsRepeated: []
+  _eventsCompleted: []
+  _eventsToday: []

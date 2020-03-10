@@ -25,7 +25,7 @@ public class UIUtils
     public static bool AnyInputActive()
     {
         // avoid Linq.Any because it is HEAVY(!) on GC and performance
-        foreach (Selectable sel in Selectable.allSelectables)
+        foreach (Selectable sel in Selectable.allSelectablesArray)
             if (sel is InputField inputField && inputField.isFocused)
                 return true;
         return false;
